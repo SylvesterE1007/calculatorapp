@@ -3,6 +3,13 @@ import './App.css';
 import NumberButton from './NumberButton.js';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentValue: 0,
+        };
+    }
+
     render() {
         return (
             <div className="App">
@@ -12,7 +19,7 @@ class App extends Component {
                      </p>
                  </header>
                 <div class="ButtonGrid">
-                    <NumberButton value={1} />
+                    <NumberButton value={1} onClick={() => this.setState({ currentValue: 1 })} />
                     <NumberButton value={2} />
                     <NumberButton value={3} />
                     <NumberButton value={4} />
@@ -23,9 +30,16 @@ class App extends Component {
                     <NumberButton value={9} />
                     <NumberButton value={0} />
                 </div>
-          
+
+                <div>{this.state.currentValue}</div>
             </div>
         );
+    }
+
+    buttonPress(newValue) {
+        this.setState({
+            currentValue: newValue
+        });
     }
 
     multiply() {
